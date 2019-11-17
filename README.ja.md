@@ -1,6 +1,12 @@
 <!-- -*- coding: utf-8 -*- -->
 # Authenticode署名データ抽出ツール
 
+[ Japanese (日本語) / [English](./README.md) ]
+
+[
+https://github.com/trueroad/extract-authenticode
+](https://github.com/trueroad/extract-authenticode)
+
 PEフォーマットのファイル（.exe や .dll 等）から
 Authenticodeの署名データを抽出します。
 
@@ -9,24 +15,37 @@ Authenticodeの署名データを抽出します。
 ビルドには以下が必要です。
 
 - Microsoft Visual Studio Express 2013 for Windows Desktop
+- MinGW-W64
 
 等
 
 ## ビルド
 
+### Visual Studio
+
 VS2013 のコマンドプロンプトを開き、
 ソースのあるフォルダをカレントフォルダにしてから、
 "nmake"を実行すると、"extract-authenticode.exe" が得られます。
+
+### MinGW-W64
+
+```
+gcc -municode -o extract-authenticode.exe extract-authenticode.c
+```
 
 ## 使い方
 
 例：explorer.exe の Authenticode データを抽出してみる。
 
+```
 extract-authenticode C:\Windows\explorer.exe out.bin
+```
 
 例：抽出された出力ファイルを解析してみる。（openssl が必要です）
 
+```
 openssl asn1parse -in out.bin -inform der -i
+```
 
 ## おまけ
 
@@ -60,26 +79,8 @@ http://blog.livedoor.jp/k_urushima/archives/729378.html
 
 ## ライセンス
 
-Copyright (C) 2014 Masamichi Hosoda. All rights reserved.
+Copyright (C) 2014, 2019 Masamichi Hosoda. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
+License: BSD-2-Clause
 
-1. Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY AUTHOR AND CONTRIBUTORS ``AS IS'' AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-ARE DISCLAIMED.  IN NO EVENT SHALL AUTHOR OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGE.
+[LICENSE](./LICENSE) をご覧ください。
